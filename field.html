@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="css/style..css">
+    <script
+            src="https://code.jquery.com/jquery-3.6.0.min.js"
+            integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+            crossorigin="anonymous"></script>
+</head>
+<body>
+    
+<h1 id = 'h1h' class="hh" > <span class="text_box">Крестики нолики</span>
+</h1>
+
+<div class="bg">
+  <table class="table">
+        <tr><td> <button type="submit" name = "name" value = "one" class="one"><img src="files/field.png" id="img1"></button>
+            <button type="submit" name = "name" value = "two" class="two"><img src="files/field.png" id="img2"></button>
+            <button type="submit" name = "name" value = "three" class="three"><img src="files/field.png" id="img3"></button>
+        </td></tr>
+        <tr><td>
+            <button type="submit" name = "name" value = "four" class="four"><img src="files/field.png" id="img4"></button>
+            <button type="submit" name = "name" value = "five" class="five"><img src="files/field.png" id="img5"></button>
+            <button type="submit" name = "name" value = "six" class="six"><img src="files/field.png" id="img6"></button>
+        </tr></td>
+        <tr><td><button type="submit" name = "name" value = "seven" class="seven"><img src="files/field.png" id="img7"></button>
+            <button type="submit" name = "name" value = "eight" class="eight"><img src="files/field.png" id="img8"></button>
+            <button type="submit" name = "name" value = "nine" class="nine"><img src="files/field.png" id="img9"></button>
+        </tr></td>
+    </table>
+    <h1 id = 'h2h' class="hh"> <span class="text_box">0-0</span></h1>
+</div>
+
+
+    <script>
+
+        $(document).ready(function (){
+
+            function ajx(nameOfValue,buttonNum){
+                $.ajax(
+                    {
+                        method: "POST",
+                        url: "index.php",
+                        data: { name:  nameOfValue}
+                    })
+                    .done(function(msg) {
+                        if(msg == "0 WIN!" || msg == "X WIN!"){
+                            document.getElementById('h1h').innerHTML = msg;
+
+                        }
+                        else{
+                            if (msg=='-'){
+
+                            }
+                            else{
+                                if(msg=='X'){
+                                    document.getElementById(buttonNum).src = 'files/x.png'
+                                }
+                                else{
+                                    document.getElementById(buttonNum).src = 'files/o.png';
+                                }
+
+                            }
+
+                        }
+
+                    });
+                }
+                ajx('test',$('button.one'));
+                $('button.one').on('click',function ()
+                {
+                    ajx($('button.one').on('click').val(),'img1');
+                });
+
+                $('button.two').on('click',function ()
+                {
+                    ajx($('button.two').on('click').val(),'img2');
+                });
+
+                $('button.three').on('click',function ()
+                {
+                    ajx($('button.three').on('click').val(),'img3');
+                });
+
+                $('button.four').on('click',function ()
+                {
+                    ajx($('button.four').on('click').val(),'img4');
+                });
+
+                $('button.five').on('click',function ()
+                {
+                    ajx($('button.five').on('click').val(),'img5');
+                });
+
+                $('button.six').on('click',function ()
+                {
+                    ajx($('button.six').on('click').val(),'img6');
+                });
+                $('button.seven').on('click',function ()
+                {
+                    ajx($('button.seven').on('click').val(),'img7');
+                });
+
+                $('button.eight').on('click',function ()
+                {
+                    ajx($('button.eight').on('click').val(),'img8');
+                });
+
+                $('button.nine').on('click',function ()
+                {
+                    ajx($('button.nine').on('click').val(),'img9');
+                });
+        });
+    </script>
+</body>
+</html>
